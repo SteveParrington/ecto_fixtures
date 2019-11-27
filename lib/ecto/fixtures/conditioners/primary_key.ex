@@ -13,6 +13,10 @@ defmodule EctoFixtures.Conditioners.PrimaryKey do
   def generate_key_value(data, path, key) do
     table_path = path |> Enum.take(2)
     model = get_in(data, table_path ++ [:model])
+    IO.inspect(model)
+    if model == nil do
+      require IEx; IEx.pry
+    end
     key_path = path ++ [:data, key]
     case get_in(data, key_path) |> is_nil() do
       true ->
